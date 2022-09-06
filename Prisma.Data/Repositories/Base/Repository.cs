@@ -13,39 +13,30 @@ namespace Prisma.Data.Repositories.Base
             _context = context;
         }
 
-        public void Add(T entity)
-        {
-            _context.Set<T>().Add(entity);
-        }
-
-        public void AddRange(IEnumerable<T> entities)
-        {
-            _context.Set<T>().AddRange(entities);
-        }
-
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
-        {
-            return _context.Set<T>().Where(expression);
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return _context.Set<T>().ToList();
-        }
-
-        public T? GetById(int id)
-        {
-            return _context.Set<T>().Find(id);
-        }
-
-        public void Remove(T entity)
+        public void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public void Insert(T entity)
         {
-            _context.Set<T>().RemoveRange(entities);
+            _context.Set<T>().Add(entity);
+            _context.SaveChanges();
+        }
+
+        public T? Select(int id)
+        {
+            return _context.Set<T>().Find(id);
+        }
+
+        public IEnumerable<T> Select()
+        {
+            return _context.Set<T>().ToList();
+        }
+
+        public IEnumerable<T> Select(Expression<Func<T, bool>> expression)
+        {
+            return _context.Set<T>().Where(expression);
         }
 
         public void Update(T entity)

@@ -4,13 +4,11 @@ namespace Prisma.Data.Repositories.Base
 {
     public interface IRepository<T> where T : class
     {
-        T GetById(int id);
-        IEnumerable<T> GetAll();
-        IEnumerable<T> Find(Expression<Func<T, bool>> expression);
-        void Add(T entity);
-        void AddRange(IEnumerable<T> entities);
+        T? Select(int id);
+        IEnumerable<T> Select();
+        IEnumerable<T> Select(Expression<Func<T, bool>> expression);
+        void Insert(T entity);
         void Update(T entity);
-        void Remove(T entity);
-        void RemoveRange(IEnumerable<T> entities);
+        void Delete(T entity);
     }
 }
