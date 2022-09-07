@@ -6,6 +6,6 @@ namespace Prisma.Data.Entities
     {
         public string Header { get; set; }
         public string Description { get; set; }
-        public Evolution Evolution { get; set; }
+        public virtual Evolution Evolution { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.BloodPressure)
                 .HasConversion<string?>()
                 .HasColumnName("BloodPressure")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(20)");
             builder
                 .Property(prop => prop.SpO2)
                 .HasConversion<byte?>()
@@ -36,7 +36,7 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.Goniometry)
                 .HasConversion<string?>()
                 .HasColumnName("Goniometry")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(20)");
             builder
                 .Property(prop => prop.Eva)
                 .HasConversion<byte?>()
@@ -46,7 +46,7 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.Glasgow)
                 .HasConversion<string?>()
                 .HasColumnName("Goniometry")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(20)");
             builder
                 .Property(prop => prop.Palpitation)
                 .HasConversion<bool?>()
@@ -66,10 +66,12 @@ namespace Prisma.Data.Mappings
             builder
                 .HasOne(prop => prop.Prescriber)
                 .WithMany()
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasOne(prop => prop.Patient)
                 .WithMany()
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

@@ -17,13 +17,13 @@ namespace Prisma.Data.Mappings
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("PublicArea")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(10)");
             builder
                 .Property(prop => prop.Name)
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("Name")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Number)
                 .HasConversion<int>()
@@ -35,7 +35,7 @@ namespace Prisma.Data.Mappings
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("District")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
         }
     }
 }

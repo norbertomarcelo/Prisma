@@ -17,16 +17,17 @@ namespace Prisma.Data.Mappings
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("Header")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Description)
                 .HasConversion<string>()
                 .IsRequired()
-                .HasColumnName("Header")
-                .HasColumnType("NVARCHAR");
+                .HasColumnName("Description")
+                .HasColumnType("NVARCHAR(1000)");
             builder
                 .HasOne(prop => prop.Evolution)
                 .WithMany()
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

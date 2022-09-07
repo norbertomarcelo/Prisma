@@ -12,8 +12,8 @@ namespace Prisma.Data.Entities
         public string Header { get; set; }
         public string Description { get; set; }
         public DateTime EvolutionDate { get; set; }
-        public ICollection<Conduct> Conducts { get; set; }
-        public Prescriber Prescriber { get; set; }
-        public Patient Patient { get; set; }
+        public virtual ICollection<Conduct> Conducts { get; set; }
+        public virtual Prescriber Prescriber { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

@@ -34,22 +34,22 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.Complaint)
                 .HasConversion<string?>()
                 .HasColumnName("Complaint")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Goals)
                 .HasConversion<string?>()
                 .HasColumnName("Goals")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.LifeHabits)
                 .HasConversion<string?>()
                 .HasColumnName("LifeHabits")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.FamilyBackground)
                 .HasConversion<string?>()
                 .HasColumnName("FamilyBackground")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Smoker)
                 .HasConversion<bool?>()
@@ -74,32 +74,32 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.Hpa)
                 .HasConversion<string?>()
                 .HasColumnName("Hpa")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(10)");
             builder
                 .Property(prop => prop.Hpp)
                 .HasConversion<string?>()
                 .HasColumnName("Hpp")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(10)");
             builder
                 .Property(prop => prop.PhysicalActivity)
                 .HasConversion<string?>()
                 .HasColumnName("PhysicalActivity")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Medication)
                 .HasConversion<string?>()
                 .HasColumnName("Medication")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Pains)
                 .HasConversion<string?>()
                 .HasColumnName("Pains")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Surgeries)
                 .HasConversion<string?>()
                 .HasColumnName("Surgeries")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.InterviewDate)
                 .HasConversion<DateTime>()
@@ -109,10 +109,12 @@ namespace Prisma.Data.Mappings
             builder
                 .HasOne(prop => prop.Prescriber)
                 .WithMany()
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasOne(prop => prop.Patient)
                 .WithMany()
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

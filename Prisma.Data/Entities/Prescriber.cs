@@ -5,6 +5,6 @@ namespace Prisma.Data.Entities
     public class Prescriber : Person
     {
         public string Coffito { get; set; }
-        public ICollection<Patient>? Patients { get; set; }
+        public virtual ICollection<Patient>? Patients { get; set; }
     }
 }

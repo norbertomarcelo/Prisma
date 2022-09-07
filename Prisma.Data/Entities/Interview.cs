@@ -22,7 +22,7 @@ namespace Prisma.Data.Entities
         public string? Pains { get; set; }
         public string? Surgeries { get; set; }
         public DateTime InterviewDate { get; set; }
-        public Prescriber Prescriber { get; set; }
-        public Patient Patient { get; set; }
+        public virtual Prescriber Prescriber { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

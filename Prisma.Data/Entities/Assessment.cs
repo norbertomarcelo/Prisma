@@ -14,7 +14,7 @@ namespace Prisma.Data.Entities
         public bool? Palpitation { get; set; }
         public DateTime AssessmentDate { get; set; }
         public DateTime? NextAssessment { get; set; }
-        public Prescriber Prescriber { get; set; }
-        public Patient Patient { get; set; }
+        public virtual Prescriber Prescriber { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

@@ -17,13 +17,13 @@ namespace Prisma.Data.Mappings
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("Header")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Description)
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("Description")
-                .HasColumnType("VARCHAR");
+                .HasColumnType("NVARCHAR(1000)");
             builder
                 .Property(prop => prop.EvolutionDate)
                 .HasConversion<DateTime>()
@@ -37,10 +37,12 @@ namespace Prisma.Data.Mappings
             builder
                 .HasOne(prop => prop.Patient)
                 .WithMany()
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasMany(prop => prop.Conducts)
                 .WithOne(e => e.Evolution)
+                .HasForeignKey(prop => prop.Id)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

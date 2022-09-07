@@ -15,10 +15,10 @@ namespace Prisma.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PublicArea = table.Column<string>(type: "NVARCHAR", nullable: false),
-                    Name = table.Column<string>(type: "NVARCHAR", nullable: false),
+                    PublicArea = table.Column<string>(type: "NVARCHAR(10)", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
                     Number = table.Column<int>(type: "INT", nullable: false),
-                    District = table.Column<string>(type: "NVARCHAR", nullable: false)
+                    District = table.Column<string>(type: "NVARCHAR(100)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,8 +31,8 @@ namespace Prisma.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "NVARCHAR", nullable: false),
-                    Cpf = table.Column<string>(type: "NVARCHAR", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
+                    Cpf = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
                     AssessmentDate = table.Column<DateTime>(type: "DATE", nullable: false),
                     DeletionDate = table.Column<DateTime>(type: "DATE", nullable: true)
                 },
@@ -45,17 +45,15 @@ namespace Prisma.Data.Migrations
                 name: "Patient",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     AssessmentDate = table.Column<DateTime>(type: "DATE", nullable: false),
-                    Occupation = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    CivilStatus = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Phone = table.Column<string>(type: "NVARCHAR", nullable: true),
+                    Occupation = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    CivilStatus = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Phone = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     PrescriberId = table.Column<int>(type: "int", nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false),
-                    PrescriberId1 = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "NVARCHAR", nullable: false),
-                    Cpf = table.Column<string>(type: "NVARCHAR", nullable: false),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
+                    Cpf = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
                     DeletionDate = table.Column<DateTime>(type: "DATE", nullable: true)
                 },
                 constraints: table =>
@@ -68,52 +66,51 @@ namespace Prisma.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Patient_Prescriber_PrescriberId",
-                        column: x => x.PrescriberId,
+                        name: "FK_Patient_Prescriber_Id",
+                        column: x => x.Id,
                         principalTable: "Prescriber",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Patient_Prescriber_PrescriberId1",
-                        column: x => x.PrescriberId1,
+                        name: "FK_Patient_Prescriber_PrescriberId",
+                        column: x => x.PrescriberId,
                         principalTable: "Prescriber",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Assessment",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BloodPressure = table.Column<string>(type: "NVARCHAR", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    BloodPressure = table.Column<string>(type: "NVARCHAR(20)", nullable: true),
                     SpO2 = table.Column<byte>(type: "TINYINT", nullable: true),
                     HeartRate = table.Column<byte>(type: "TINYINT", nullable: true),
                     Temperature = table.Column<float>(type: "REAL", nullable: true),
-                    Goniometry = table.Column<string>(type: "NVARCHAR", nullable: true),
+                    Goniometry = table.Column<string>(type: "NVARCHAR(20)", nullable: true),
                     Eva = table.Column<byte>(type: "TINYINT", nullable: true),
                     Palpitation = table.Column<bool>(type: "BIT", nullable: true),
                     AssessmentDate = table.Column<DateTime>(type: "DATE", nullable: false),
                     NextAssessment = table.Column<DateTime>(type: "SMALLDATETIME", nullable: true),
-                    PrescriberId = table.Column<int>(type: "int", nullable: false),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
-                    PatientId1 = table.Column<int>(type: "int", nullable: true)
+                    PatientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Assessment", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Assessment_Patient_Id",
+                        column: x => x.Id,
+                        principalTable: "Patient",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Assessment_Patient_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patient",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Assessment_Patient_PatientId1",
-                        column: x => x.PatientId1,
-                        principalTable: "Patient",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Assessment_Prescriber_PrescriberId",
-                        column: x => x.PrescriberId,
+                        name: "FK_Assessment_Prescriber_Id",
+                        column: x => x.Id,
                         principalTable: "Prescriber",
                         principalColumn: "Id");
                 });
@@ -122,28 +119,27 @@ namespace Prisma.Data.Migrations
                 name: "Evolution",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Header = table.Column<string>(type: "NVARCHAR", nullable: false),
-                    Description = table.Column<string>(type: "VARCHAR", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Header = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
+                    Description = table.Column<string>(type: "NVARCHAR(1000)", nullable: false),
                     EvolutionDate = table.Column<DateTime>(type: "DATE", nullable: false),
                     PrescriberId = table.Column<int>(type: "int", nullable: false),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
-                    PatientId1 = table.Column<int>(type: "int", nullable: true)
+                    PatientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Evolution", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Evolution_Patient_PatientId",
-                        column: x => x.PatientId,
+                        name: "FK_Evolution_Patient_Id",
+                        column: x => x.Id,
                         principalTable: "Patient",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Evolution_Patient_PatientId1",
-                        column: x => x.PatientId1,
+                        name: "FK_Evolution_Patient_PatientId",
+                        column: x => x.PatientId,
                         principalTable: "Patient",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Evolution_Prescriber_PrescriberId",
                         column: x => x.PrescriberId,
@@ -155,46 +151,44 @@ namespace Prisma.Data.Migrations
                 name: "Interview",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Age = table.Column<byte>(type: "TINYINT", nullable: false),
                     Weight = table.Column<float>(type: "REAL", nullable: false),
                     Height = table.Column<float>(type: "REAL", nullable: false),
-                    Complaint = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Goals = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    LifeHabits = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    FamilyBackground = table.Column<string>(type: "NVARCHAR", nullable: true),
+                    Complaint = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Goals = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    LifeHabits = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    FamilyBackground = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     Smoker = table.Column<bool>(type: "BIT", nullable: true),
                     Alcoholic = table.Column<bool>(type: "BIT", nullable: true),
                     Diabetic = table.Column<bool>(type: "BIT", nullable: true),
                     Hypertensive = table.Column<bool>(type: "BIT", nullable: true),
-                    Hpa = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Hpp = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    PhysicalActivity = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Medication = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Pains = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Surgeries = table.Column<string>(type: "NVARCHAR", nullable: true),
+                    Hpa = table.Column<string>(type: "NVARCHAR(10)", nullable: true),
+                    Hpp = table.Column<string>(type: "NVARCHAR(10)", nullable: true),
+                    PhysicalActivity = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Medication = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Pains = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Surgeries = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
                     InterviewDate = table.Column<DateTime>(type: "DATE", nullable: false),
-                    PrescriberId = table.Column<int>(type: "int", nullable: false),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
-                    PatientId1 = table.Column<int>(type: "int", nullable: true)
+                    PatientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Interview", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Interview_Patient_Id",
+                        column: x => x.Id,
+                        principalTable: "Patient",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Interview_Patient_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patient",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Interview_Patient_PatientId1",
-                        column: x => x.PatientId1,
-                        principalTable: "Patient",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Interview_Prescriber_PrescriberId",
-                        column: x => x.PrescriberId,
+                        name: "FK_Interview_Prescriber_Id",
+                        column: x => x.Id,
                         principalTable: "Prescriber",
                         principalColumn: "Id");
                 });
@@ -205,10 +199,10 @@ namespace Prisma.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "NVARCHAR", nullable: false),
-                    Pain = table.Column<string>(type: "NVARCHAR(64)", nullable: true),
-                    Location = table.Column<string>(type: "NVARCHAR", nullable: true),
-                    Description = table.Column<string>(type: "VARCHAR", nullable: true),
+                    Name = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
+                    Pain = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Location = table.Column<string>(type: "NVARCHAR(100)", nullable: true),
+                    Description = table.Column<string>(type: "NVARCHAR(1000)", nullable: true),
                     PatientId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -225,17 +219,16 @@ namespace Prisma.Data.Migrations
                 name: "Conduct",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Header = table.Column<string>(type: "NVARCHAR", nullable: false),
-                    EvolutionId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Header = table.Column<string>(type: "NVARCHAR(100)", nullable: false),
+                    Description = table.Column<string>(type: "NVARCHAR(1000)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Conduct", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Conduct_Evolution_EvolutionId",
-                        column: x => x.EvolutionId,
+                        name: "FK_Conduct_Evolution_Id",
+                        column: x => x.Id,
                         principalTable: "Evolution",
                         principalColumn: "Id");
                 });
@@ -246,29 +239,9 @@ namespace Prisma.Data.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assessment_PatientId1",
-                table: "Assessment",
-                column: "PatientId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Assessment_PrescriberId",
-                table: "Assessment",
-                column: "PrescriberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Conduct_EvolutionId",
-                table: "Conduct",
-                column: "EvolutionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Evolution_PatientId",
                 table: "Evolution",
                 column: "PatientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Evolution_PatientId1",
-                table: "Evolution",
-                column: "PatientId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evolution_PrescriberId",
@@ -279,16 +252,6 @@ namespace Prisma.Data.Migrations
                 name: "IX_Interview_PatientId",
                 table: "Interview",
                 column: "PatientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Interview_PatientId1",
-                table: "Interview",
-                column: "PatientId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Interview_PrescriberId",
-                table: "Interview",
-                column: "PrescriberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pathology_PatientId",
@@ -304,11 +267,6 @@ namespace Prisma.Data.Migrations
                 name: "IX_Patient_PrescriberId",
                 table: "Patient",
                 column: "PrescriberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patient_PrescriberId1",
-                table: "Patient",
-                column: "PrescriberId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

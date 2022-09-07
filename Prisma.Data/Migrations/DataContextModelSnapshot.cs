@@ -24,20 +24,20 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Address", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("District")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("District");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Name");
 
                     b.Property<int>("Number")
@@ -46,7 +46,7 @@ namespace Prisma.Data.Migrations
 
                     b.Property<string>("PublicArea")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(10)")
                         .HasColumnName("PublicArea");
 
                     b.HasKey("Id");
@@ -56,18 +56,15 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Assessment", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("AssessmentDate")
                         .HasColumnType("DATE")
                         .HasColumnName("AssessmentDate");
 
                     b.Property<string>("BloodPressure")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(20)")
                         .HasColumnName("BloodPressure");
 
                     b.Property<byte?>("Eva")
@@ -76,12 +73,12 @@ namespace Prisma.Data.Migrations
 
                     b.Property<string>("Glasgow")
                         .ValueGeneratedOnUpdateSometimes()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(20)")
                         .HasColumnName("Goniometry");
 
                     b.Property<string>("Goniometry")
                         .ValueGeneratedOnUpdateSometimes()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(20)")
                         .HasColumnName("Goniometry");
 
                     b.Property<byte?>("HeartRate")
@@ -99,12 +96,6 @@ namespace Prisma.Data.Migrations
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PrescriberId")
-                        .HasColumnType("int");
-
                     b.Property<byte?>("SpO2")
                         .HasColumnType("TINYINT")
                         .HasColumnName("SpO2");
@@ -117,54 +108,37 @@ namespace Prisma.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.HasIndex("PatientId1");
-
-                    b.HasIndex("PrescriberId");
-
                     b.ToTable("Assessment", (string)null);
                 });
 
             modelBuilder.Entity("Prisma.Data.Entities.Conduct", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .ValueGeneratedOnUpdateSometimes()
-                        .HasColumnType("NVARCHAR")
-                        .HasColumnName("Header");
-
-                    b.Property<int>("EvolutionId")
-                        .HasColumnType("int");
+                        .HasColumnType("NVARCHAR(1000)")
+                        .HasColumnName("Description");
 
                     b.Property<string>("Header")
                         .IsRequired()
-                        .ValueGeneratedOnUpdateSometimes()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Header");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EvolutionId");
 
                     b.ToTable("Conduct", (string)null);
                 });
 
             modelBuilder.Entity("Prisma.Data.Entities.Evolution", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("VARCHAR")
+                        .HasColumnType("NVARCHAR(1000)")
                         .HasColumnName("Description");
 
                     b.Property<DateTime>("EvolutionDate")
@@ -173,13 +147,10 @@ namespace Prisma.Data.Migrations
 
                     b.Property<string>("Header")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Header");
 
                     b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PatientId1")
                         .HasColumnType("int");
 
                     b.Property<int>("PrescriberId")
@@ -189,8 +160,6 @@ namespace Prisma.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.HasIndex("PatientId1");
-
                     b.HasIndex("PrescriberId");
 
                     b.ToTable("Evolution", (string)null);
@@ -198,11 +167,8 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Interview", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<byte>("Age")
                         .HasColumnType("TINYINT")
@@ -213,7 +179,7 @@ namespace Prisma.Data.Migrations
                         .HasColumnName("Alcoholic");
 
                     b.Property<string>("Complaint")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Complaint");
 
                     b.Property<bool?>("Diabetic")
@@ -221,11 +187,11 @@ namespace Prisma.Data.Migrations
                         .HasColumnName("Diabetic");
 
                     b.Property<string>("FamilyBackground")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("FamilyBackground");
 
                     b.Property<string>("Goals")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Goals");
 
                     b.Property<float>("Height")
@@ -233,11 +199,11 @@ namespace Prisma.Data.Migrations
                         .HasColumnName("Height");
 
                     b.Property<string>("Hpa")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(10)")
                         .HasColumnName("Hpa");
 
                     b.Property<string>("Hpp")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(10)")
                         .HasColumnName("Hpp");
 
                     b.Property<bool?>("Hypertensive")
@@ -249,36 +215,30 @@ namespace Prisma.Data.Migrations
                         .HasColumnName("InterviewDate");
 
                     b.Property<string>("LifeHabits")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("LifeHabits");
 
                     b.Property<string>("Medication")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Medication");
 
                     b.Property<string>("Pains")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Pains");
 
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("PhysicalActivity")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("PhysicalActivity");
-
-                    b.Property<int>("PrescriberId")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("Smoker")
                         .HasColumnType("BIT")
                         .HasColumnName("Smoker");
 
                     b.Property<string>("Surgeries")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Surgeries");
 
                     b.Property<float>("Weight")
@@ -289,36 +249,32 @@ namespace Prisma.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.HasIndex("PatientId1");
-
-                    b.HasIndex("PrescriberId");
-
                     b.ToTable("Interview", (string)null);
                 });
 
             modelBuilder.Entity("Prisma.Data.Entities.Pathology", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasColumnType("VARCHAR")
+                        .HasColumnType("NVARCHAR(1000)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Location")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Location");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Pain")
-                        .HasColumnType("NVARCHAR(64)")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Pain");
 
                     b.Property<int?>("PatientId")
@@ -333,11 +289,8 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Patient", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -348,12 +301,12 @@ namespace Prisma.Data.Migrations
                         .HasColumnName("AssessmentDate");
 
                     b.Property<string>("CivilStatus")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("CivilStatus");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Cpf");
 
                     b.Property<DateTime?>("DeletionDate")
@@ -362,21 +315,18 @@ namespace Prisma.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Occupation")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Occupation");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Phone");
 
                     b.Property<int>("PrescriberId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PrescriberId1")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RegistrationDate")
@@ -390,28 +340,26 @@ namespace Prisma.Data.Migrations
 
                     b.HasIndex("PrescriberId");
 
-                    b.HasIndex("PrescriberId1");
-
                     b.ToTable("Patient", (string)null);
                 });
 
             modelBuilder.Entity("Prisma.Data.Entities.Prescriber", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Coffito")
                         .IsRequired()
                         .ValueGeneratedOnUpdateSometimes()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Cpf");
 
                     b.Property<DateTime?>("DeletionDate")
@@ -421,7 +369,7 @@ namespace Prisma.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .ValueGeneratedOnUpdateSometimes()
-                        .HasColumnType("NVARCHAR")
+                        .HasColumnType("NVARCHAR(100)")
                         .HasColumnName("Name");
 
                     b.Property<DateTime>("RegistrationDate")
@@ -435,21 +383,22 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Assessment", b =>
                 {
-                    b.HasOne("Prisma.Data.Entities.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
+                    b.HasOne("Prisma.Data.Entities.Patient", null)
+                        .WithMany("Assessments")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Prisma.Data.Entities.Patient", null)
-                        .WithMany("Assessments")
-                        .HasForeignKey("PatientId1")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("Prisma.Data.Entities.Prescriber", "Prescriber")
                         .WithMany()
-                        .HasForeignKey("PrescriberId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Prisma.Data.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Patient");
@@ -461,7 +410,7 @@ namespace Prisma.Data.Migrations
                 {
                     b.HasOne("Prisma.Data.Entities.Evolution", "Evolution")
                         .WithMany("Conducts")
-                        .HasForeignKey("EvolutionId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -470,16 +419,17 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Evolution", b =>
                 {
-                    b.HasOne("Prisma.Data.Entities.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
+                    b.HasOne("Prisma.Data.Entities.Patient", null)
+                        .WithMany("Evolutions")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Prisma.Data.Entities.Patient", null)
-                        .WithMany("Evolutions")
-                        .HasForeignKey("PatientId1")
-                        .OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne("Prisma.Data.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Prisma.Data.Entities.Prescriber", "Prescriber")
                         .WithMany()
@@ -494,21 +444,22 @@ namespace Prisma.Data.Migrations
 
             modelBuilder.Entity("Prisma.Data.Entities.Interview", b =>
                 {
-                    b.HasOne("Prisma.Data.Entities.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
+                    b.HasOne("Prisma.Data.Entities.Patient", null)
+                        .WithMany("Interviews")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Prisma.Data.Entities.Patient", null)
-                        .WithMany("Interviews")
-                        .HasForeignKey("PatientId1")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("Prisma.Data.Entities.Prescriber", "Prescriber")
                         .WithMany()
-                        .HasForeignKey("PrescriberId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Prisma.Data.Entities.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Patient");
@@ -531,16 +482,17 @@ namespace Prisma.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Prisma.Data.Entities.Prescriber", "Prescriber")
-                        .WithMany()
-                        .HasForeignKey("PrescriberId")
+                    b.HasOne("Prisma.Data.Entities.Prescriber", null)
+                        .WithMany("Patients")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Prisma.Data.Entities.Prescriber", null)
-                        .WithMany("Patients")
-                        .HasForeignKey("PrescriberId1")
-                        .OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne("Prisma.Data.Entities.Prescriber", "Prescriber")
+                        .WithMany()
+                        .HasForeignKey("PrescriberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 

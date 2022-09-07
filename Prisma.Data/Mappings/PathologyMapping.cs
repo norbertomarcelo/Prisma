@@ -17,22 +17,22 @@ namespace Prisma.Data.Mappings
                 .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("Name")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Pain)
                 .HasConversion<string?>()
                 .HasColumnName("Pain")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Location)
                 .HasConversion<string?>()
                 .HasColumnName("Location")
-                .HasColumnType("NVARCHAR");
+                .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Description)
                 .HasConversion<string?>()
                 .HasColumnName("Description")
-                .HasColumnType("VARCHAR");
+                .HasColumnType("NVARCHAR(1000)");
         }
     }
 }
