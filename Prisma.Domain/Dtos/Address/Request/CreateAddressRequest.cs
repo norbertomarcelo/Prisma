@@ -1,4 +1,4 @@
-﻿namespace Prisma.Domain.Dto.Address.Request
+﻿namespace Prisma.Domain.Dtos.Address.Request
 {
     public class CreateAddressRequest
     {

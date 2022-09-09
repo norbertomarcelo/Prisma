@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Prisma.Data.Contexts;
 using System.Linq.Expressions;
 
@@ -16,12 +17,15 @@ namespace Prisma.Data.Repositories.Base
         public void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
+            _context.SaveChanges();
         }
 
-        public void Insert(T entity)
+        public EntityEntry<T> Insert(T entity)
         {
-            _context.Set<T>().Add(entity);
+            var result = _context.Set<T>().Add(entity);
             _context.SaveChanges();
+
+            return result;
         }
 
         public T? Select(int id)
@@ -42,7 +46,7 @@ namespace Prisma.Data.Repositories.Base
         public void Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            _context.Set<T>().Update(entity);
+            _context.SaveChanges();
         }
     }
 }

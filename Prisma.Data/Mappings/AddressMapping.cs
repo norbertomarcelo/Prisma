@@ -26,10 +26,10 @@ namespace Prisma.Data.Mappings
                 .HasColumnType("NVARCHAR(100)");
             builder
                 .Property(prop => prop.Number)
-                .HasConversion<int>()
+                .HasConversion<string>()
                 .IsRequired()
                 .HasColumnName("Number")
-                .HasColumnType("INT");
+                .HasColumnType("NVARCHAR(10)");
             builder
                 .Property(prop => prop.District)
                 .HasConversion<string>()
