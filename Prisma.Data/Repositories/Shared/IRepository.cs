@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
 
-namespace Prisma.Data.Repositories.Base
+namespace Prisma.Data.Repositories.Shared
 {
     public interface IRepository<T> where T : class
     {

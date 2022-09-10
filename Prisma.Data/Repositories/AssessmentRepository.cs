@@ -1,6 +1,6 @@
 ﻿using Prisma.Data.Contexts;
 using Prisma.Data.Entities;
-using Prisma.Data.Repositories.Base;
+using Prisma.Data.Repositories.Shared;
 
 namespace Prisma.Data.Repositories
 {

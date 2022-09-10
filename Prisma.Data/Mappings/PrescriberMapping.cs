@@ -39,7 +39,7 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.Coffito)
                 .HasConversion<string>()
                 .IsRequired()
-                .HasColumnName("Name")
+                .HasColumnName("Coffito")
                 .HasColumnType("NVARCHAR(100)");
             builder
                 .HasMany(prop => prop.Patients)

@@ -4,9 +4,9 @@ using Prisma.Data.Repositories.Shared;
 
 namespace Prisma.Data.Repositories
 {
-    public class EvolutionRepository : Repository<Evolution>
+    public class PrescriberRepository : Repository<Prescriber>
     {
-        public EvolutionRepository(DataContext context) : base(context)
+        public PrescriberRepository(DataContext context) : base(context)
         {
         }
     }

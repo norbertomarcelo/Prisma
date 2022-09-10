@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Prisma.Data.Contexts;
 using System.Linq.Expressions;
 
-namespace Prisma.Data.Repositories.Base
+namespace Prisma.Data.Repositories.Shared
 {
     public class Repository<T> : IRepository<T> where T : class
     {
