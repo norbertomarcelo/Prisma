@@ -2,16 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Prisma.Data.Entities;
 using Prisma.Data.Repositories;
-using Prisma.Domain.Dtos.Address.Response;
 using Prisma.Domain.Dtos.Prescriber.Request;
 using Prisma.Domain.Dtos.Prescriber.Response;
 using Prisma.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Prisma.Domain.Services
 {

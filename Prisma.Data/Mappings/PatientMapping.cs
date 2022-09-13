@@ -28,7 +28,7 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.RegistrationDate)
                 .HasConversion<DateTime>()
                 .IsRequired()
-                .HasColumnName("AssessmentDate")
+                .HasColumnName("RegistrationDate")
                 .HasColumnType("DATE");
             builder
                 .Property(prop => prop.DeletionDate)
@@ -39,7 +39,7 @@ namespace Prisma.Data.Mappings
                 .Property(prop => prop.BirthDate)
                 .HasConversion<DateTime>()
                 .IsRequired()
-                .HasColumnName("AssessmentDate")
+                .HasColumnName("BirthDate")
                 .HasColumnType("DATE");
             builder
                 .Property(prop => prop.Occupation)

@@ -18,6 +18,8 @@ builder.Services.AddScoped<AddressRepository, AddressRepository>();
 builder.Services.AddScoped<AddressService, AddressService>();
 builder.Services.AddScoped<PrescriberRepository, PrescriberRepository>();
 builder.Services.AddScoped<PrescriberService, PrescriberService>();
+builder.Services.AddScoped<PatientRepository, PatientRepository>();
+builder.Services.AddScoped<PatientService, PatientService>();
 
 var app = builder.Build();
 
