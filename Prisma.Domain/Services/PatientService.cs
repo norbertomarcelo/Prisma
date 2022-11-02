@@ -76,19 +76,7 @@ namespace Prisma.Domain.Services
 
         public void Update(int id, UpdatePatientRequest request)
         {
-            var prescriber = _patientRepository.Select(id);
-
-            if (prescriber is null)
-                throw new EntityNotFoundException($"Patient Id = {id} not found.");
-
-            if (prescriber.Cpf != request.Cpf && request.Cpf is not null)
-                prescriber.Cpf = request.Cpf;
-            if (prescriber.Name != request.Name && request.Name is not null)
-                prescriber.Name = request.Name;
-            if (prescriber. != request.Coffito && request.Coffito is not null)
-                prescriber.Coffito = request.Coffito;
-
-            _prescriberRepository.Update(prescriber);
+            int test = 1;
         }
     }
 }

@@ -12,6 +12,6 @@ namespace Prisma.Domain.Dtos.Prescriber.Response
         public string Name { get; set; }
         public string Cpf { get; set; }
         public string Coffito { get; set; }
-        public virtual ICollection<Patient>? Patients { get; set; }
+        //public virtual ICollection<Patient>? Patients { get; set; }
     }
 }

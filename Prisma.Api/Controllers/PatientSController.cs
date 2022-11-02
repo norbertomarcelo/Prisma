@@ -18,7 +18,7 @@ namespace Prisma.Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IActionResult Create(GetPatientResponse request)
+        public IActionResult Create(CreatePatientRequest request)
         {
             try
             {
