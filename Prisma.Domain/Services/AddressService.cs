@@ -53,7 +53,7 @@ namespace Prisma.Domain.Services
             return getAddress;
         }
 
-        public IList<GetAddressResponse> List()
+        public List<GetAddressResponse> List()
         {
             var addressList = _addressRepository.Select();
 
