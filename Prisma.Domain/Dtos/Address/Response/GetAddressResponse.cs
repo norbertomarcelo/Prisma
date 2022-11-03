@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Prisma.Domain.Dtos.Address.Response
+﻿namespace Prisma.Domain.Dtos.Address.Response
 {
-    public class GetAddressResponse
-    {
-        public string PublicArea { get; set; }
-        public string Name { get; set; }
-        public string Number { get; set; }
-        public string District { get; set; }
-    }
+    public record struct GetAddressResponse
+    (
+        string PublicArea,
+        string Name,
+        string Number,
+        string District
+    );
 }
